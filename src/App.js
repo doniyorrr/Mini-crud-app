@@ -1,115 +1,120 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
-import AddIndianFoodItem from './AddIndianFoodItem'
-import IndianFoodItem from './IndianFoodItem'
+import AddProduct from "./AddProduct";
+import ProductItem from "./ProductItem";
 
-const indianFoods = [
+const allProduct = [
   {
-    name: 'Samosa',
-    price: 2
+    name: "IPhone 14 pro",
+    price: 2000,
   },
   {
-    name: 'Pakora',
-    price: 1
+    name: "Samsung Galaxy S22",
+    price: 1700,
   },
   {
-    name: 'Battaataa Vadaa',
-    price: 4
+    name: "Xiaomi MI 12 ultra",
+    price: 1200,
   },
   {
-    name: 'Kamman Dhokla',
-    price: 4
-  },
+    name: "Huawei MatePad 5",
+    price: 1800  },
   {
-    name: 'Doosa',
-    price: 5
-  }
+    name: "Google Pixel 8",
+    price: 1500,
+  },
 ];
 
-localStorage.setItem('indianFoods', JSON.stringify(indianFoods));
+localStorage.setItem("allProduct", JSON.stringify(allProduct));
 
 class App extends Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
-      indianFoods: JSON.parse(localStorage.getItem('indianFoods'))
+      allProduct: JSON.parse(localStorage.getItem("allProduct")),
     };
 
     this.onAdd = this.onAdd.bind(this);
     this.onDelete = this.onDelete.bind(this);
     this.onEditSubmit = this.onEditSubmit.bind(this);
   }
-  componentWillMount(){
-    const indianFoods = this.getIndianFoods();
-    this.setState({ indianFoods })
+  componentWillMount() {
+    const allProduct = this.getProduct();
+    this.setState({ allProduct });
   }
 
-  getIndianFoods() {
-    return this.state.indianFoods;
+  getProduct() {
+    return this.state.allProduct;
   }
 
   onAdd(name, price) {
     //console.log(name, price)
-    const indianFoods = this.getIndianFoods();
-    indianFoods.push({
+    const allProduct = this.getProduct();
+    allProduct.push({
       name,
-      price
+      price,
     });
 
-    this.setState({ indianFoods })
+    this.setState({ allProduct });
   }
 
-  onDelete(name){
-    const indianFoods = this.getIndianFoods();
+  onDelete(name) {
+    const allProduct = this.getProduct();
 
-    const filteredIndianFoods = indianFoods.filter(indianFood => {
-      return indianFood.name !== name;
+    const filteredIndianFoods = allProduct.filter((item) => {
+      return item.name !== name;
     });
 
-    this.setState({ indianFoods: filteredIndianFoods })
+    this.setState({ allProduct: filteredIndianFoods });
   }
 
-  onEditSubmit(name, price, originalName){
-    let indianFoods = this.getIndianFoods();
+  onEditSubmit(name, price, originalName) {
+    let allProduct = this.getProduct();
 
-    indianFoods = indianFoods.map(indianFood => {
-      if(indianFood.name === originalName){
-        indianFood.name = name;
-        indianFood.price = price;
+    allProduct = allProduct.map((item) => {
+      if (item.name === originalName) {
+        item.name = name;
+        item.price = price;
       }
 
-      return indianFood;
-
+      return item;
     });
 
-    this.setState({ indianFoods })
-    //console.log(name, price)
+    this.setState({ allProduct });
   }
 
   render() {
     return (
       <div className="App">
-        <h1>Negros Restaurant </h1>
+        <h1>Crud App </h1>
 
-        <AddIndianFoodItem
-          onAdd={this.onAdd}
+        <AddProduct onAdd={this.onAdd} />
 
-        />
-          {
-            this.state.indianFoods.map(indianFood => {
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.allProduct.map((item , index) => {
               return (
-                <IndianFoodItem
-                  key={indianFood.name}
-                  {...indianFood}
+                <ProductItem
+                  key={index}
+                  item={item}
+                  index={index}
                   onDelete={this.onDelete}
                   onEditSubmit={this.onEditSubmit}
-              />
-            );
-          })
-          }
+                />
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     );
   }

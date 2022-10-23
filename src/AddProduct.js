@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class AddIndianFoodItem extends Component {
+class AddProduct extends Component {
   constructor(props){
     super(props);
 
@@ -18,7 +18,7 @@ class AddIndianFoodItem extends Component {
   render() {
     return (
       <form onSubmit={this.onSubmit}>
-        <h3> Add Negros Food Item </h3>
+        <h3> Add Product</h3>
         <input placeholder="Name" ref={nameInput => this.nameInput = nameInput} />
         <input placeholder="Price" ref={priceInput => this.priceInput = priceInput} />
         <button>Add</button>
@@ -29,4 +29,4 @@ class AddIndianFoodItem extends Component {
  }
 }
 
-export default AddIndianFoodItem;
+export default AddProduct;
