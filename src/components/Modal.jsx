@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Children, useState } from "react";
 import Modal from "react-modal";
 
 const customStyles = {
@@ -13,7 +13,7 @@ const customStyles = {
       width: "50%"
     },
   };
- function ModalPage() {
+ function ModalPage(props) {
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleModal() {
@@ -30,8 +30,7 @@ const customStyles = {
         contentLabel="My dialog"
         style={customStyles}
       >
-        <div>My modal dialog.</div>
-        <button onClick={toggleModal}>Close modal</button>
+        {props.children}
 
       </Modal>
     </div>

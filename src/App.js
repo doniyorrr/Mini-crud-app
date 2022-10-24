@@ -3,25 +3,31 @@ import "./App.css";
 
 import AddProduct from "./components/AddProduct";
 import ProductItem from "./components/ProductItem";
-import Modal from "./components/Modal"
+import Modal from "./components/Modal";
 
 const allProduct = [
   {
+    id: 0,
     name: "IPhone 14 pro",
     price: 2000,
   },
   {
+    id: 1,
     name: "Samsung Galaxy S22",
     price: 1700,
   },
   {
+    id: 2,
     name: "Xiaomi MI 12 ultra",
     price: 1200,
   },
   {
+    id: 3,
     name: "Huawei MatePad 5",
-    price: 1800  },
+    price: 1800,
+  },
   {
+    id: 4,
     name: "Google Pixel 8",
     price: 1500,
   },
@@ -86,13 +92,29 @@ class App extends Component {
     this.setState({ allProduct });
   }
 
+  modal
+
   render() {
     return (
       <div className="App container">
         <h1>Crud App </h1>
 
         <AddProduct onAdd={this.onAdd} />
-        <Modal/>
+        <Modal>
+          <form onSubmit={this.onEditSubmit}>
+            <input
+              placeholder="Name"
+              ref={(nameInput) => (this.nameInput = nameInput)}
+              // defaultValue={name}
+            />
+            <input
+              placeholder="Price"
+              ref={(priceInput) => (this.priceInput = priceInput)}
+              // defaultValue={price}
+            />
+            <button>Save</button>
+          </form>
+        </Modal>
 
         <table className="table">
           <thead>
@@ -104,7 +126,7 @@ class App extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.allProduct.map((item , index) => {
+            {this.state.allProduct.map((item, index) => {
               return (
                 <ProductItem
                   key={index}
@@ -118,6 +140,35 @@ class App extends Component {
           </tbody>
         </table>
       </div>
+      // {/* {
+      //     this.state.isEdit
+      //       ? (
+      //         <form onSubmit={this.onEditSubmit}>
+      //         <input placeholder="Name" ref={nameInput => this.nameInput = nameInput} defaultValue = {name} />
+      //         <input placeholder="Price" ref={priceInput => this.priceInput = priceInput} defaultValue = {price} />
+      //         <button>Save</button>
+      //         </form>
+      //       )
+      //       : (
+      //         // <div>
+      //         //   <span>{name}</span>
+      //         //   {' | '}
+      //         //   <span>{price}</span>
+      //         //   {' | '}
+      //         //
+      //         //   {' | '}
+      //         //
+      //         // </div>
+      //         <tr>
+      //           <th scope="row">1</th>
+      //           <td>{name}</td>
+      //           <td>{price}</td>
+      //           <button onClick={this.onEdit}>Edit</button>
+      //           <button onClick={this.onDelete}>Delete</button>
+      //         </tr>
+      //       )
+
+      //     } */}
     );
   }
 }

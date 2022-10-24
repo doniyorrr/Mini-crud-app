@@ -45,35 +45,7 @@ class ProductItem extends Component {
         <button className="btn btn-success" onClick={this.onEdit}>Edit</button>
         <button className="btn btn-danger" onClick={this.onDelete}>Delete</button>
       </tr>
-      // {/* {
-      //     this.state.isEdit
-      //       ? (
-      //         <form onSubmit={this.onEditSubmit}>
-      //         <input placeholder="Name" ref={nameInput => this.nameInput = nameInput} defaultValue = {name} />
-      //         <input placeholder="Price" ref={priceInput => this.priceInput = priceInput} defaultValue = {price} />
-      //         <button>Save</button>
-      //         </form>
-      //       )
-      //       : (
-      //         // <div>
-      //         //   <span>{name}</span>
-      //         //   {' | '}
-      //         //   <span>{price}</span>
-      //         //   {' | '}
-      //         //
-      //         //   {' | '}
-      //         //
-      //         // </div>
-      //         <tr>
-      //           <th scope="row">1</th>
-      //           <td>{name}</td>
-      //           <td>{price}</td>
-      //           <button onClick={this.onEdit}>Edit</button>
-      //           <button onClick={this.onDelete}>Delete</button>
-      //         </tr>
-      //       )
-
-      //     } */}
+      
     );
   }
 }
