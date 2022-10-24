@@ -22,6 +22,12 @@
   font-size: large;
 }
 
+.modal{
+  width: 50%;
+  height: auto;
+  min-height: 100px;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

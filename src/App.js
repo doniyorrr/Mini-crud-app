@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 
-import AddProduct from "./AddProduct";
-import ProductItem from "./ProductItem";
+import AddProduct from "./components/AddProduct";
+import ProductItem from "./components/ProductItem";
+import Modal from "./components/Modal"
 
 const allProduct = [
   {
@@ -87,12 +88,13 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App container">
         <h1>Crud App </h1>
 
         <AddProduct onAdd={this.onAdd} />
+        <Modal/>
 
-        <table class="table">
+        <table className="table">
           <thead>
             <tr>
               <th scope="col">#</th>
